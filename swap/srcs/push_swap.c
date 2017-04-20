@@ -12,6 +12,23 @@
 
 #include "../incs/push_swap.h"
 
+int		*list_to_tab(t_env *e)
+{
+  int		*dec;
+  int		i;
+
+  if ((e->tab = (intmax_t*)malloc(sizeof(intmax_t) * (e->size_a + 1))) == NULL)
+    return (NULL);
+  i = 0;
+  while (i < e->size_a)
+    {
+      e->tab[i] = e->stack_a->data;
+      i++;
+      e->stack_a = e->stack_a->next;
+    }
+  e->tab[i] = 214748364;
+}
+
 void	push_swap(t_env *e)
 {
 	if (is_sort(e, A) == 0)
@@ -20,8 +37,13 @@ void	push_swap(t_env *e)
 			view_list(e);
 		if (e->size_a <= 3)
 			special_sort(e);
-		else
+		else if (e->size_a < 50)
 			normal_sort(e);
+		else
+		  {
+		    list_to_tab(e);
+		    merge_sort(e);
+		  }
 	}
 	else
 	{

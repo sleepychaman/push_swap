@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   merge_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mhurd <mhurd@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/14 23:39:37 by ryabicho          #+#    #+#             */
-/*   Updated: 2017/04/15 03:22:13 by ryabicho         ###   ########.fr       */
+/*   Created: 2016/12/10 11:12:47 by mhurd             #+#    #+#             */
+/*   Updated: 2016/12/29 22:58:34 by mhurd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/push_swap.h"
+#include "push_swap.h"
 
 /*
 **	len[0]: pos in stack a
@@ -24,68 +24,68 @@
 **	len[4]: Total moves
 */
 
-void			set_len_vals(t_env *e, int *len, int y)
+void			set_len_vals(t_ps *ps, int *len, int y)
 {
-	len[1] = e->size_b - y - 1;
+	len[1] = ps->b_len - y - 1;
 	len[4] = MAX(len[0], len[1]);
-	if (len[0] + e->size_b - len[1] < len[4])
+	if (len[0] + ps->b_len - len[1] < len[4])
 	{
-		len[4] = len[0] + e->size_b - len[1];
+		len[4] = len[0] + ps->b_len - len[1];
 		len[2] = 2;
 	}
-	if (e->size_a - len[0] + len[1] < len[4])
+	if (ps->a_len - len[0] + len[1] < len[4])
 	{
-		len[4] = e->size_a - len[0] + len[1];
+		len[4] = ps->a_len - len[0] + len[1];
 		len[2] = 3;
 	}
-	if (MAX(e->size_a - len[0], e->size_b - len[1]) < len[4])
+	if (MAX(ps->a_len - len[0], ps->b_len - len[1]) < len[4])
 	{
-		len[4] = MAX(e->size_a - len[0], e->size_b - len[1]);
+		len[4] = MAX(ps->a_len - len[0], ps->b_len - len[1]);
 		len[2] = 1;
-		len[0] = e->size_a - len[0];
-		len[1] = e->size_b - len[1];
+		len[0] = ps->a_len - len[0];
+		len[1] = ps->b_len - len[1];
 	}
 }
 
-void			rotate_individuals(t_env *e, int *len)
+void			rotate_individuals(t_ps *ps, int *len)
 {
 	if (len[2] == 2)
 	{
 		while (len[0]-- > 0)
-			ra(e);
-		len[1] = e->size_b - len[1];
+			ra(ps, 1);
+		len[1] = ps->b_len - len[1];
 		while (len[1]-- > 0)
-			rrb(e);
+			rrb(ps, 1);
 		return ;
 	}
-	len[0] = e->size_a - len[0];
+	len[0] = ps->a_len - len[0];
 	while (len[0]-- > 0)
-		rra(e);
+		rra(ps, 1);
 	while (len[1]-- > 0)
-		rb(e);
+		rb(ps, 1);
 	return ;
 }
 
-static void		setup_sort(int **best, int *len, t_env *e)
+static void		setup_sort(int **best, int *len, t_ps *ps)
 {
 	*best = 0;
-	*len = (e->size_a > 200) ? 57 : *len;
+	*len = (ps->a_len > 200) ? 57 : *len;
 }
 
-void			sort_big_a_on_b(t_env *e, int len, int x, int *tmp)
+void			sort_big_a_on_b(t_ps *ps, int len, int x, int *tmp)
 {
- 	int *best;
+	int *best;
 
-	setup_sort(&best, &len, e);
-	while (e->size_a > len && !(check_rotates(e)
-		|| is_stack_sort(e->stack_a, e->size_a, 0)))
+	setup_sort(&best, &len, ps);
+	while (ps->a_len > len && !(check_rotates(ps)
+		|| is_stack_sort(ps->a, ps->a_len, 0)))
 	{
 		x = -1;
-		while (++x < e->size_a)
+		while (++x < ps->a_len)
 		{
-			if (best && x >= best[4] && e->size_a - best[4] - 1 > x)
-				x = e->size_a - best[4] - 1;
-			tmp = find_len(e, x);
+			if (best && x >= best[4] && ps->a_len - best[4] - 1 > x)
+				x = ps->a_len - best[4] - 1;
+			tmp = find_len(ps, x);
 			if (best == 0 || tmp[4] <= best[4])
 			{
 				if (best)
@@ -95,7 +95,7 @@ void			sort_big_a_on_b(t_env *e, int len, int x, int *tmp)
 			else
 				free(tmp);
 		}
-		do_sort(e, best);
+		do_sort(ps, best);
 		free(best);
 		best = 0;
 	}
