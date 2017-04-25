@@ -3,54 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aamon <aamon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jgoncalv <jgoncalv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/22 18:34:20 by dcognata          #+#    #+#             */
-/*   Updated: 2017/04/05 20:34:33 by ryabicho         ###   ########.fr       */
+/*   Created: 2016/12/28 13:28:38 by jgoncalv          #+#    #+#             */
+/*   Updated: 2017/01/05 17:29:39 by jgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/push_swap.h"
+#include "push_swap.h"
 
-int		*list_to_tab(t_env *e)
+static void	ft_tri(t_box *box)
 {
-  int		*dec;
-  int		i;
+	t_box			*tmp;
+	t_box			*tmptmp;
+	unsigned int	i;
 
-  if ((e->tab = (intmax_t*)malloc(sizeof(intmax_t) * (e->size_a + 1))) == NULL)
-    return (NULL);
-  i = 0;
-  while (i < e->size_a)
-    {
-      e->tab[i] = e->stack_a->data;
-      i++;
-      e->stack_a = e->stack_a->next;
-    }
-  e->tab[i] = 214748364;
+	tmptmp = box;
+	while (box)
+	{
+		i = 0;
+		tmp = tmptmp;
+		while (tmp)
+		{
+			if (tmp->nbr < box->nbr)
+				i++;
+			tmp = tmp->next;
+		}
+		box->i = i;
+		box = box->next;
+	}
 }
 
-void	push_swap(t_env *e)
+int			main(int ac, char **av)
 {
-	if (is_sort(e, A) == 0)
+	t_box			*ba;
+	t_box			*bb;
+	unsigned int	len;
+
+	ba = NULL;
+	bb = NULL;
+	if (ac > 1)
 	{
-		if (e->print == 1)
-			view_list(e);
-		if (e->size_a <= 3)
-			special_sort(e);
-		else if (e->size_a < 50)
-			normal_sort(e);
-		else
-		  {
-		    list_to_tab(e);
-		    merge_sort(e);
-		  }
+		len = ft_getnbr(av + 1, ac - 1, &ba);
+		ft_tri(ba);
+		if (ft_checker(ba, len) != 1)
+			start(&ba, &bb);
+		boxdel(&ba);
+		boxdel(&bb);
 	}
-	else
-	{
-		if (e->print == 1)
-		{
-			view_list(e);
-			ft_putstr("Stack already sorted !\n");
-		}
-	}
+	return (0);
 }

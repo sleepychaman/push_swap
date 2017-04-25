@@ -33,7 +33,7 @@ static int	ft_isdig(char *str)
 
 static int	ft_is_int(char *str)
 {
-	intmax_t	nbr;
+	int	nbr;
 
 	nbr = ft_atoi(str);
 	if (nbr < INT_MIN)

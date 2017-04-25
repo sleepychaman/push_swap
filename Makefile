@@ -17,42 +17,49 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_PATH = ./swap/srcs/
-SRC_NAME =  main.c               \
-			check_args.c         \
-			op.c                 \
-			op_push.c            \
-			op_swap.c            \
-			op_rotate.c          \
-			op_reverse.c         \
-			push_swap.c          \
-			sort_stack.c         \
-			little_stack.c       \
-			utils.c              \
-			search.c             \
-			merge_sort.c		 \
-			merge_helper.c		 \
-			list_manager.c
-OBJ_PATH = ./objs/
+SRC_NAME = push_swap.c\
+                list.c\
+		command.c\
+                swap.c\
+		push.c\
+                rotate.c\
+		rotate_rev.c\
+                get.c\
+		check.c\
+                affichage.c\
+		affichv.c\
+                usecom.c\
+		nouveau.c\
+                pushback.c\
+		sort.c\
+                restore.c\
+		move.c\
+                tri.c
+
+OAOBJ_PATH = ./objs/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-CPPFLAGS = -I./swap/incs/ -I./libft/
+CPPFLAGS = -I./include/ -I./libft/
 
 SRC_PATH_C = ./check/srcs/
-SRC_NAME_C =  main.c             \
-			  utils.c            \
-			  check.c            \
-			  list_manager.c     \
-			  op_push.c          \
-			  op_swap.c          \
-			  op_rotate.c        \
-			  op_reverse.c       \
-			  instructions.c
+SRC_NAME_C =  checker.c\
+                list.c\
+                command.c\
+                swap.c\
+                push.c\
+                rotate.c\
+                rotate_rev.c\
+                get.c\
+                check.c\
+                affichage.c\
+                affichv.c
+
 OBJ_PATH_C = ./objs_c/
 OBJ_NAME_C = $(SRC_NAME_C:.c=.o)
 SRC_C = $(addprefix $(SRC_PATH_C), $(SRC_NAME_C))
 OBJ_C = $(addprefix $(OBJ_PATH_C), $(OBJ_NAME_C))
-CPPFLAGS_C = -I./check/incs/ -I./libft/
+CPPFLAGS_C = -I./include/ -I./libft/
 
 LIBFT = -L ./libft/ -lft
 
