@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   rotate_rev.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoncalv <jgoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/17 14:06:52 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/01/05 13:27:41 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/04/24 22:19:38 by ryabicho          #+#    #+#             */
+/*   Updated: 2017/04/24 22:19:39 by ryabicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	inline	void	ft_rotate_now(t_box **box)
+static inline void	ft_rotate_rev_now(t_box **box)
 {
 	t_box *tmp;
+	t_box *tmp2;
 
 	tmp = *box;
+	tmp2 = *box;
 	while (tmp->next)
 		tmp = tmp->next;
+	while (tmp2->next->next)
+		tmp2 = tmp2->next;
 	tmp->next = *box;
-	tmp = *box;
-	*box = (*box)->next;
-	tmp->next = NULL;
+	*box = tmp;
+	tmp2->next = NULL;
 }
 
-void					ft_rotate(t_box **ba, t_box **bb, int pile)
+void				ft_rotate_rev(t_box **ba, t_box **bb, int pile)
 {
 	if ((pile == 1 || pile == 0) && *ba && (*ba)->next)
-		ft_rotate_now(ba);
-	if ((pile == 2 || pile == 0) && *bb && (*bb)->next)
-		ft_rotate_now(bb);
+		ft_rotate_rev_now(ba);
+	else if ((pile == 2 || pile == 0) && *bb && (*bb)->next)
+		ft_rotate_rev_now(bb);
 }

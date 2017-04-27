@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoncalv <jgoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/09 14:08:06 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/01/04 18:33:00 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/04/24 22:16:11 by ryabicho          #+#    #+#             */
+/*   Updated: 2017/04/24 22:16:12 by ryabicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static inline void	noodle(t_box **ba, t_box **bb, unsigned int len, t_opt opt)
+static inline void	noodle(t_box **ba, t_box **bb, unsigned int len)
 {
 	t_com			*com;
 
 	com = NULL;
 	ft_getcom(&com);
-	ft_execute(ba, bb, com, opt);
+	ft_execute(ba, bb, com);
 	if (ft_checker(*ba, len) == 1)
 		ft_putstr("OK\n");
 	else
@@ -52,7 +52,7 @@ int					main(int ac, char **av)
 			i++;
 		}
 		if (ac > i)
-			noodle(&ba, &bb, ft_getnbr(av + i, ac - i, &ba), opt);
+			noodle(&ba, &bb, ft_getnbr(av + i, ac - i, &ba));
 	}
 	return (0);
 }

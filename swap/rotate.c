@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoncalv <jgoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 19:39:10 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/01/03 17:42:23 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/04/24 22:19:29 by ryabicho          #+#    #+#             */
+/*   Updated: 2017/04/24 22:19:30 by ryabicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static inline void	ft_swap_now(t_box **box)
+static	inline	void	ft_rotate_now(t_box **box)
 {
-	t_box	*tmp;
+	t_box *tmp;
 
 	tmp = *box;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = *box;
+	tmp = *box;
 	*box = (*box)->next;
-	tmp->next = (*box)->next;
-	(*box)->next = tmp;
+	tmp->next = NULL;
 }
 
-void				ft_swap(t_box **ba, t_box **bb, int pile)
+void					ft_rotate(t_box **ba, t_box **bb, int pile)
 {
 	if ((pile == 1 || pile == 0) && *ba && (*ba)->next)
-		ft_swap_now(ba);
+		ft_rotate_now(ba);
 	if ((pile == 2 || pile == 0) && *bb && (*bb)->next)
-		ft_swap_now(bb);
+		ft_rotate_now(bb);
 }

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoncalv <jgoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/09 17:18:48 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/01/03 17:42:38 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/04/24 21:33:04 by ryabicho          #+#    #+#             */
+/*   Updated: 2017/04/24 22:14:45 by ryabicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "libft.h"
+# include <stdlib.h>
 # include <limits.h>
-# include "get_next_line.h"
 
 typedef	struct		s_opt
 {
@@ -58,8 +59,6 @@ typedef struct		s_base
 	unsigned int	ni;
 }					t_base;
 
-void				affichage(t_box *ba, t_box *bb, t_com *com);
-void				affichv(t_box *ba, t_box *bb, t_com *com);
 void				cmd(t_com *com);
 
 t_box				*ft_newbox(int nbr, t_box **box);
@@ -79,7 +78,7 @@ void				ft_push(t_box **ba, t_box **bb, int pile);
 void				ft_rotate(t_box **ba, t_box **bb, int pile);
 void				ft_rotate_rev(t_box **ba, t_box **bb, int pile);
 
-void				ft_execute(t_box **ba, t_box **bb, t_com *com, t_opt opt);
+void				ft_execute(t_box **ba, t_box **bb, t_com *com);
 int					ft_checker(t_box *box, int len);
 
 void				start(t_box **ba, t_box **bb);

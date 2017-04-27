@@ -6,7 +6,7 @@
 #    By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/11 15:45:42 by ryabicho          #+#    #+#              #
-#    Updated: 2017/04/15 03:20:29 by ryabicho         ###   ########.fr        #
+#    Updated: 2017/04/24 22:22:12 by ryabicho         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,25 +16,23 @@ NAME_C = checker
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC_PATH = ./swap/srcs/
+SRC_PATH = ./swap/
 SRC_NAME = push_swap.c\
-                list.c\
-		command.c\
-                swap.c\
-		push.c\
-                rotate.c\
-		rotate_rev.c\
-                get.c\
-		check.c\
-                affichage.c\
-		affichv.c\
-                usecom.c\
-		nouveau.c\
-                pushback.c\
-		sort.c\
-                restore.c\
-		move.c\
-                tri.c
+				list.c\
+				command.c\
+				swap.c\
+				push.c\
+				rotate.c\
+				rotate_rev.c\
+				get.c\
+				check.c\
+				usecom.c\
+				nouveau.c\
+				pushback.c\
+				sort.c\
+				restore.c\
+				move.c\
+				tri.c
 
 OAOBJ_PATH = ./objs/
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -42,18 +40,16 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 CPPFLAGS = -I./include/ -I./libft/
 
-SRC_PATH_C = ./check/srcs/
+SRC_PATH_C = ./check/
 SRC_NAME_C =  checker.c\
-                list.c\
-                command.c\
-                swap.c\
-                push.c\
-                rotate.c\
-                rotate_rev.c\
-                get.c\
-                check.c\
-                affichage.c\
-                affichv.c
+				list.c\
+				command.c\
+				swap.c\
+				push.c\
+				rotate.c\
+				rotate_rev.c\
+				get.c\
+				check.c
 
 OBJ_PATH_C = ./objs_c/
 OBJ_NAME_C = $(SRC_NAME_C:.c=.o)

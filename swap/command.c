@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoncalv <jgoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 18:44:31 by jgoncalv          #+#    #+#             */
-/*   Updated: 2017/01/03 17:54:50 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/04/24 22:17:42 by ryabicho          #+#    #+#             */
+/*   Updated: 2017/04/24 22:17:43 by ryabicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ unsigned int	ft_count_nbr(t_box *box)
 	return (len);
 }
 
-void			ft_execute(t_box **ba, t_box **bb, t_com *com, t_opt opt)
+void			ft_execute(t_box **ba, t_box **bb, t_com *com)
 {
 	while (com)
 	{
@@ -57,10 +57,6 @@ void			ft_execute(t_box **ba, t_box **bb, t_com *com, t_opt opt)
 			ft_rotate(ba, bb, com->pile);
 		else if (com->com == rr)
 			ft_rotate_rev(ba, bb, com->pile);
-		if (opt.opt == c)
-			affichage(*ba, *bb, com);
-		else if (opt.opt == v)
-			affichv(*ba, *bb, com);
 		com = com->next;
 	}
 }

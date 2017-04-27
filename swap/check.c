@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoncalv <jgoncalv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryabicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 15:42:41 by jgoncalv          #+#    #+#             */
-/*   Updated: 2016/12/20 16:38:10 by jgoncalv         ###   ########.fr       */
+/*   Created: 2017/04/24 22:17:35 by ryabicho          #+#    #+#             */
+/*   Updated: 2017/04/24 22:17:36 by ryabicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_isdig(char *str)
 
 static int	ft_is_int(char *str)
 {
-	intmax_t	nbr;
+	int	nbr;
 
 	nbr = ft_atoi(str);
 	if (nbr < INT_MIN)
